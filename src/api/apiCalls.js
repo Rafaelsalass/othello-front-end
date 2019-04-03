@@ -1,7 +1,7 @@
-import axios from 'axios';
+// import axios from 'axios';
 
-export const apiGetNews = (url) => axios.get(url)
-  .then(response => response.data)
-  .catch(err => {
-    return err;
-  });
+// export const apiGetNews = (url) => axios.get(url)
+//   .then(response => response.data)
+//   .catch(err => {
+//     return err;
+//   });
