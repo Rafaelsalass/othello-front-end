@@ -1,7 +1,7 @@
 import { all, fork } from 'redux-saga/effects';
-import newsSagas from './News/sagas';
+import boardSagas from './Board/sagas';
 export default function* rootSaga(getState) {
   yield all([
-    fork(newsSagas),
+    fork(boardSagas),
   ]);
 }

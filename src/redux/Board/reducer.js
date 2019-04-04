@@ -1,13 +1,19 @@
 import actions from './actions';
 
 const initState = {
-  news: null,
-  newsState: null,
-  material: null,
-  keywords: null,
+  board: [
+    [1, 2, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+  ],
 }
 
-export default function newsReducer(state = initState, action) {
+export default function board(state = initState, action) {
   switch (action.type) {
     case actions.FETCH_NEWS_SUCCES:
       return {

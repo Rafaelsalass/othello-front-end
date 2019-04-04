@@ -3,7 +3,7 @@ import { baseColors } from './theme';
 
 export const GlobalStyle = createGlobalStyle`
   body {
-    background-color: ${baseColors.darkblue};
+    background-color: ${baseColors.mediumblue};
     font-family: 'Roboto', sans-serif;
     height: 100%;
 
