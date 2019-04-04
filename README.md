@@ -1,5 +1,4 @@
-Othello game,<br>
-enjoy<br>
+Othello game<br>
 
 #### If you want to run this do the following:
 
