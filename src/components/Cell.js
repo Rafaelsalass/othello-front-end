@@ -1,23 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { EMPTY_SPACE, PLAYER_ONE, PLAYER_TWO } from '../utils/constants';
 import { baseColors, transitions, commonStyles } from '../utils/theme';
 
-class Cell extends Component{
-  render() {
-    return (
-      <CellStyle
-        {...this.props}
-      />
-    );
+const Cell = (props) => {
+  const handleClick = (event) => {
+    const { x, y } = props;
+    console.log(x);
+    console.log(y);
   }
-
-  calculateHeight = (id) => {
-    const width = document.getElementById(id).offsetWidth;
-    this.setState({
-      height: width,
-    });
-  }
+  return (
+    <CellStyle
+      {...props}
+      onClick={handleClick}
+    />
+  );
 }
 
 export default Cell;

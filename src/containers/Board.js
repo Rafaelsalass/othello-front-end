@@ -26,7 +26,7 @@ class Board extends Component{
     const { board } = this.props;
     return (
       <BoardStyle>
-        <div class='board'>
+        <div className='board'>
           {
             board.map((row, rowIndex) => {
               return row.map((column, columnIndex) => {
