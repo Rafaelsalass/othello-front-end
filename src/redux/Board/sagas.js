@@ -31,6 +31,10 @@ export function* watchMakeMove() {
         type: actions.GET_GAME,
         url: GET_GAME(),
       });
+      yield put({
+        type: actions.SET_ERROR,
+        error: 'Keep on playing!'
+      });
     } catch (err) {
       yield put({
         type: actions.SET_ERROR,
