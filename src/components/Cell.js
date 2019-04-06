@@ -2,12 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import { EMPTY_SPACE, PLAYER_ONE, PLAYER_TWO } from '../utils/constants';
 import { baseColors, transitions, commonStyles } from '../utils/theme';
+import { MAKE_MOVE } from '../api/endpoints';
 
 const Cell = (props) => {
   const handleClick = (event) => {
     const { x, y } = props;
-    console.log(x);
-    console.log(y);
+    props.make_move(MAKE_MOVE(y, x));
   }
   return (
     <CellStyle

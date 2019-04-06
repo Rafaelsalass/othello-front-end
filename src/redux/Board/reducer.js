@@ -1,35 +1,39 @@
 import actions from './actions';
 
 const initState = {
-  board: [
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 1, 2, 0, 0, 0],
-    [0, 0, 0, 2, 1, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-  ],
+  game: {
+    boardRows: [
+      ['_', '_', '_', '_', '_', '_', '_', '_'],
+      ['_', '_', '_', '_', '_', '_', '_', '_'],
+      ['_', '_', '_', '_', '_', '_', '_', '_'],
+      ['_', '_', '_', 'W', 'B', '_', '_', '_'],
+      ['_', '_', '_', 'B', 'W', '_', '_', '_'],
+      ['_', '_', '_', '_', '_', '_', '_', '_'],
+      ['_', '_', '_', '_', '_', '_', '_', '_'],
+      ['_', '_', '_', '_', '_', '_', '_', '_'],
+    ],
+    currentPlayer: 'BLACK',
+  },
+  error: ' ',
 }
 
 export default function board(state = initState, action) {
   switch (action.type) {
-    case actions.FETCH_NEWS_SUCCES:
+    case actions.GET_GAME_SUCCESS:
       return {
         ...state,
-        newsState: action.newsState,
-        news: action.news,
+        game: action.game,
+        gameFetch: action.gameFetch,
       }
-    case actions.FETCH_NEWS_ERROR:
+    case actions.GET_GAME_ERROR:
       return {
         ...state,
-        newsState: actions.FETCH_NEWS_ERROR,
+        gameFetch: actions.GET_GAME_ERROR,
       }
-    case actions.UPDATE_VALUE:
+    case actions.SET_ERROR:
       return {
         ...state,
-        [action.propety]: action.value,
+        error: action.error,
       }
     default:
       return state;

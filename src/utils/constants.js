@@ -1,3 +1,3 @@
-export const EMPTY_SPACE = 0;
-export const PLAYER_ONE = 1;
-export const PLAYER_TWO = 2;
+export const EMPTY_SPACE = '_';
+export const PLAYER_ONE = 'W';
+export const PLAYER_TWO = 'B';

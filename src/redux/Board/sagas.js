@@ -1,40 +1,59 @@
 import { all, takeLatest, put, fork, call } from 'redux-saga/effects';
 import actions from './actions';
-import { apiGetNews } from '../../api/apiCalls';
-import { push } from 'connected-react-router';
+import {
+  apiGetGame,
+  apiMakeMove,
+  apiResetGame,
+} from '../../api/apiCalls';
+import { GET_GAME } from '../../api/endpoints';
+// import { push } from 'connected-react-router';
 
-export function* watchRequestNews() {
-  yield takeLatest(actions.FETCH_NEWS, function*(action) {
+export function* watchGetGame() {
+  yield takeLatest(actions.GET_GAME, function*(action) {
     try {
-      const result = yield call (apiGetNews, action.url);
+      const result = yield call (apiGetGame, action.url);
       yield put({
-        type: actions.FETCH_NEWS_SUCCES,
-        newsState: actions.FETCH_NEWS_SUCCES,
-        news: result.response.docs,
+        type: actions.GET_GAME_SUCCESS,
+        game: result,
+        gameFetch: actions.GET_GAME_SUCCESS,
       });
-
-      yield put(push('/feed'));
-
     } catch (err) {
-      console.error(err);
-      yield put({ type: actions.FETCH_NEWS_ERROR });
+      yield put({ type: actions.GET_GAME_ERROR });
     }
   });
 }
 
-export function* watchUpdateNewsFormValue() {
-  yield takeLatest(actions.UPDATE_FORM_VALUE, function* (action) {
-    yield put ({
-      type: actions.UPDATE_VALUE,
-      propety: action.propety,
-      value: action.value,
-    })
+export function* watchMakeMove() {
+  yield takeLatest(actions.MAKE_MOVE, function*(action) {
+    try {
+      yield call (apiMakeMove, action.url);
+      yield put({
+        type: actions.GET_GAME,
+        url: GET_GAME(),
+      });
+    } catch (err) {
+      yield put({
+        type: actions.SET_ERROR,
+        error: err.response.status,
+      });
+    }
+  });
+}
+
+export function* watchResetGame() {
+  yield takeLatest(actions.RESET_GAME, function*(action) {
+    yield call (apiResetGame, action.url);
+    yield put({
+      type: actions.GET_GAME,
+      url: GET_GAME(),
+    });
   });
 }
 
 export default function* rootSaga() {
   yield all([
-    fork(watchRequestNews),
-    fork(watchUpdateNewsFormValue),
+    fork(watchGetGame),
+    fork(watchMakeMove),
+    fork(watchResetGame),
   ]);
 }
